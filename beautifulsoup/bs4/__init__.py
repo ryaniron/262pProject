@@ -491,6 +491,20 @@ class BeautifulSoup(Tag):
         self.markup = None
         self.builder.soup = None
 
+    def __iter__(self):         #Milestone 4
+        """Depth-first traversal over all nodes in the tree."""
+        stack = [self]
+
+        while stack:
+            node = stack.pop()
+            yield node
+
+            # Add children to stack in reverse order so iteration is left→right
+            if hasattr(node, 'contents'):
+                for child in reversed(node.contents):
+                    stack.append(child)
+
+
     def copy_self(self) -> "BeautifulSoup":
         """Create a new BeautifulSoup object with the same TreeBuilder,
         but not associated with any markup.
