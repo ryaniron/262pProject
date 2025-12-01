@@ -218,6 +218,7 @@ class BeautifulSoup(Tag):
         replacer: Optional[Any] = None,
         **kwargs: Any,
     ):
+
         """Constructor.
 
         :param markup: A string or a file-like object representing
@@ -494,13 +495,11 @@ class BeautifulSoup(Tag):
     def __iter__(self):         #Milestone 4
         """Depth-first traversal over all nodes in the tree."""
         stack = [self]
-
         while stack:
             node = stack.pop()
             yield node
-
-            # Add children to stack in reverse order so iteration is left→right
-            if hasattr(node, 'contents'):
+            # Add children in reverse so iteration is natural order
+            if hasattr(node, "contents"):
                 for child in reversed(node.contents):
                     stack.append(child)
 

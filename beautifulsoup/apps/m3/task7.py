@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from bs4 import BeautifulSoup
 from bs4.soup_replacer import SoupReplacer
 
 def add_class_attr(tag):
-    tag.attrs["class"] = "test"
+    if tag.name == "p":
+        tag.attrs["class"] = "test"
 
 def main():
     with open("input.html") as f:
