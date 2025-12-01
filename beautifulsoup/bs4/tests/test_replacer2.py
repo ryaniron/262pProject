@@ -43,7 +43,8 @@ def test_xformer_remove_class():
 
 def test_combined_transformers():
     html = '<b class="y">text</b>'
-    def name_fx(tag): return "strong"
+    def name_fx(tag): 
+        return "strong"
     def attr_fx(tag): return {"data-new": "ok"}
     soup = BeautifulSoup(html, "html.parser",
                          replacer=SoupReplacer(name_xformer=name_fx, attrs_xformer=attr_fx))
